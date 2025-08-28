@@ -1,0 +1,1 @@
+This is a java authentication api, the project objective is check the knowledge about backend using java, spring boot, and session management stateless using JWT.

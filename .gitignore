@@ -1,0 +1,62 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+
+# ===============================================
+# ARQUIVOS DE CONFIGURAÇÃO LOCAL (COM SEGREDOS)
+# ===============================================
+# Ignora o ficheiro de propriedades do ambiente local para não expor senhas.
+application-local.properties
+
+
+# ===============================================
+# ARQUIVOS GERADOS PELO BUILD (MAVEN/GRADLE)
+# ===============================================
+# Ignora a pasta de saída do build do Maven
+/target/
+
+# Ignora ficheiros de log
+*.log
+*.log.*
+
+
+# ===============================================
+# ARQUIVOS DE IDE E SISTEMA OPERACIONAL
+# ===============================================
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+.env
