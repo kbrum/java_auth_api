@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    networks:
+      - lab-network
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+networks:
+  lab-network:
+    driver: bridge

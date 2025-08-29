@@ -18,12 +18,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean // indica uma ferramente que deve ser gerida pelo spring
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // Throws é usado para delegar a resolução de problemas vindos de exceções, ao framework
         return http
                 .csrf(AbstractHttpConfigurer::disable) // desliga a porteção de Cross Site Request Forgery
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // indica que o gerenciamento de sessão é stateless e nao devem ser guardadas informações de sessão
                 .authorizeHttpRequests(authorize -> authorize
 
+                        .requestMatchers(HttpMethod.GET, "/").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll() // permite acesso ao endpoint de login
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll() // permite acesso ao endpoint de cadastro
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll() //permite acesso a todos os endppoints necessarios para usar o swagger

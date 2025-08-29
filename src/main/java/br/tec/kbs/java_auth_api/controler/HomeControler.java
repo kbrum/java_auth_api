@@ -10,6 +10,7 @@ public class HomeControler {
 
     @GetMapping //Diz que a requisição é do tipo GET
     public String home() {
+
         return "Hello, welcome to my Java Auth API";
     }
 }
