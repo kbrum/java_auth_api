@@ -18,10 +18,17 @@ public class AuthController {
 
     // O endpoint agora espera um JSON no formato do nosso DTO
     @PostMapping("/register")
-    public ResponseEntity<UserModel> registrarUsuario(@RequestBody UserCreateDTO userDTO){
+    public ResponseEntity<UserModel> registerUser(@RequestBody UserCreateDTO userDTO){
         UserModel newUser = userService.registerUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
-
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(String username){
+        String user = userService.getUserByUsername(username);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+
 
 }
