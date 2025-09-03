@@ -1,4 +1,4 @@
-package br.tec.kbs.java_auth_api.controller;
+package br.tec.kbs.java_auth_api.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
