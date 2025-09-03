@@ -29,6 +29,9 @@ public class UserModel implements UserDetails { // classe ORM para criação do 
 
 
     public UserModel(String name, String username, String password) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
     }
 
     @Override
