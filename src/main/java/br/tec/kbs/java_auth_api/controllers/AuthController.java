@@ -1,10 +1,12 @@
 // Em controller/AuthController.java
 package br.tec.kbs.java_auth_api.controllers;
 
+import br.tec.kbs.java_auth_api.dto.LoginReponseDTO;
 import br.tec.kbs.java_auth_api.dto.UserCreateDTO;
 import br.tec.kbs.java_auth_api.dto.UserLoginDTO;
-import br.tec.kbs.java_auth_api.models.UserModel;
+import br.tec.kbs.java_auth_api.models.User;
 import br.tec.kbs.java_auth_api.repositories.UserRepository;
+import br.tec.kbs.java_auth_api.services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +25,14 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/register")
     public ResponseEntity registerUser(@RequestBody @Valid UserCreateDTO userDTO){
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(userDTO.password());
-        UserModel newUser = new UserModel(userDTO.name(), userDTO.username(), encryptedPassword);
+        User newUser = new User(userDTO.name(), userDTO.username(), encryptedPassword);
 
         this.userRepository.save(newUser);
 
@@ -39,6 +44,8 @@ public class AuthController {
         var usernamePassword =new UsernamePasswordAuthenticationToken(userDTO.username(),userDTO.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginReponseDTO(token));
     }
 }

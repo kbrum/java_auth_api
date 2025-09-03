@@ -14,7 +14,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class UserModel implements UserDetails { // classe ORM para criação do usuario no banco
+public class User implements UserDetails { // classe ORM para criação do usuario no banco
 
     @Id // indica que essa é a primary key da tabela
     @GeneratedValue(strategy = GenerationType.UUID) // indica que sera gerado automaticamente e delega esse trabalho para o banco postgres
@@ -28,7 +28,7 @@ public class UserModel implements UserDetails { // classe ORM para criação do 
     private String password; // senha antes de passar  pelo hash
 
 
-    public UserModel(String name, String username, String password) {
+    public User(String name, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;
