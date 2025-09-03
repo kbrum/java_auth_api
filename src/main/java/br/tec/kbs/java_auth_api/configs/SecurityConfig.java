@@ -23,10 +23,20 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // desliga a porteção de Cross Site Request Forgery
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // indica que o gerenciamento de sessão é stateless e nao devem ser guardadas informações de sessãO
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/auth/**", "/","/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated())
 
                 .build();
+    }
+
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return  authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

@@ -1,21 +1,18 @@
 package br.tec.kbs.java_auth_api.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 @Data
 @Entity(name = "users") // indica ao java que esta clase é uma tabela da minha aplicação
 @Table(name = "users")
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class UserModel implements UserDetails { // classe ORM para criação do usuario no banco
 
@@ -29,6 +26,10 @@ public class UserModel implements UserDetails { // classe ORM para criação do 
     private String username; // nome de usuario para login
 
     private String password; // senha antes de passar  pelo hash
+
+
+    public UserModel(String name, String username, String password) {
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
